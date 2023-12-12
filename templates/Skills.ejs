@@ -1,0 +1,22 @@
+<!-- Skills.ejs -->
+<!-- Render skills content using dummyCvState.skills -->
+<!-- skills: [
+    { skill: "JavaScript" },
+    { skill: "React" },
+    { skill: "HTML" },
+    { skill: "CSS" },
+  ], -->
+
+<div class="skills">
+  <style>
+    .skills ul {
+      margin-left: 20px;
+    }
+  </style>
+  <h2 class="title">Skills</h2>
+  <ul class="decorated-list">
+    <% skills.forEach((item)=>{%>
+    <li><%=item.skill%></li>
+    <%});%>
+  </ul>
+</div>

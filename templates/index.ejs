@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>CV</title>
+  </head>
+
+  <body>
+    <div class="page">
+      <%- include('Header', { infos: data.infos }) %>
+
+      <div class="container">
+        <div class="left-column">
+          <%- include('Skills', { skills: data.skills }) %> <%-
+          include('Languages', { languages: data.languages }) %> <%-
+          include('ContactInfos', { infos: data.infos }) %>
+        </div>
+
+        <div class="right-column">
+          <%- include('ObjectiveStatement', { summary: data.summary }) %> <%-
+          include('Experience', { experiences: data.jobExperience }) %> <%-
+          include('Education', { education: data.education }) %>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Open Sans", sans-serif;
+      font-family: "Sora", sans-serif;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .page {
+      padding: 40px;
+      background-color: white;
+      width: 800px;
+      margin: 0 auto;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .left-column {
+      flex-basis: 30%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .right-column {
+      flex-basis: 65%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .title {
+      font-weight: 600;
+      font-size: 16px;
+      color: #356eff;
+      margin-bottom: 7px;
+    }
+
+    .sub-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #222222;
+    }
+
+    .decorated-list {
+      list-style: disc;
+    }
+  </style>
+</html>

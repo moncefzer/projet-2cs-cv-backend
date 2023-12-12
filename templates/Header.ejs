@@ -1,0 +1,36 @@
+<!-- Header.ejs -->
+<!-- Render header content using dummyCvState.infos -->
+<!-- infos: {
+  image: "path-to-profile-image.jpg",
+  firstName: "Moncef",
+  lastName: "Zermache",
+  jobTitle: "Software Engineer",
+  country: "United States",
+  city: "San Francisco",
+  state: "CA",
+  phoneNumber: "+1234567890",
+  email: "john@example.com",
+} -->
+<div class="header">
+  <style>
+    .header {
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .fullname {
+      display: flex;
+      gap: 5px;
+      font-weight: bold;
+    }
+  </style>
+  <div class="fullname">
+    <p><%= infos.firstName %></p>
+    <p><%= infos.lastName %></p>
+  </div>
+  <p><%= infos.email %></p>
+  <p><%= infos.phoneNumber %></p>
+</div>
