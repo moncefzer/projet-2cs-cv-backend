@@ -8,7 +8,7 @@ const cors = require("cors");
 const app = express();
 
 // set cors
-app.use(cors({}));
+app.use(cors());
 
 // Set EJS as the view engine
 app.set("view engine", "ejs");
@@ -32,7 +32,7 @@ app.get("/cv", async (req, res) => {
   const page = await browser.newPage();
 
   // Set the viewport size
-  await page.setViewport({ width: 800, height: 600 });
+  await page.setViewport({ width: 800, height: 700 });
 
   // Set the content of the page
   await page.setContent(html);
@@ -52,7 +52,10 @@ app.get("/cv", async (req, res) => {
     format: "A4",
     height: "400px",
   });
-
+  await page.screenshot({
+    path: "image.jpeg",
+    type: "jpeg",
+  });
   // Set appropriate response headers
   res.setHeader("Content-Type", "application/pdf");
   res.setHeader("Content-Disposition", 'inline; filename="sample.pdf"'); // Display inline, not as an attachment
