@@ -13,10 +13,13 @@
   }, -->
 
 <div class="contact-info">
-  <style></style>
+  <style>
+
+  </style>
   <h2 class="title">Contact Infos</h2>
-  <ul>
-    <li>mbenafia01@gmail.com</li>
-    <li>+213 781 708 065</li>
+  <ul class="">
+    <% for (var key in infos) { %>
+      <li> <%= infos[key] %> </li>
+    <% } %>
   </ul>
 </div>

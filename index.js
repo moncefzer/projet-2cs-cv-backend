@@ -26,13 +26,13 @@ app.get("/cv", async (req, res) => {
   );
 
   // Launch Puppeteer browser
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: "new"});
 
   // Create a new page
   const page = await browser.newPage();
 
   // Set the viewport size
-  await page.setViewport({ width: 800, height: 700 });
+  await page.setViewport({ width: 800, height: 1000 });
 
   // Set the content of the page
   await page.setContent(html);
@@ -41,30 +41,35 @@ app.get("/cv", async (req, res) => {
   var milis = new Date();
   milis = milis.getTime();
 
+  const fileName = `cv_${data.infos.firstName}_${milis}`
+
   // Generate the PDF
   const filePath = path.join(
     __dirname,
     "media",
-    `cv_${data.infos.firstName}_${milis}.pdf`
+    fileName + `.pdf`
   );
+
   const pdf = await page.pdf({
     path: filePath,
     format: "A4",
     height: "400px",
   });
   await page.screenshot({
-    path: "image.jpeg",
-    type: "jpeg",
+    path: `images\\`+ fileName + `.png`,
+    type: "png",
   });
   // Set appropriate response headers
-  res.setHeader("Content-Type", "application/pdf");
-  res.setHeader("Content-Disposition", 'inline; filename="sample.pdf"'); // Display inline, not as an attachment
+  await browser.close();
 
-  // Send the PDF data to the client
-  res.sendFile(filePath);
+  // res.setHeader("Content-Type", "application/pdf");
+  // res.setHeader("Content-Disposition", 'inline; filename="cv.pdf"'); // Display inline, not as an attachment
+
+  // // Send the PDF data to the client
+
+  res.sendFile(path.join(__dirname, 'images', `${fileName}.png`));
 
   // Close Puppeteer browser
-  await browser.close();
 });
 
-app.listen(3001, () => console.log("Server started on port 3000"));
+app.listen(3001, () => console.log("Server started on port 3001"));

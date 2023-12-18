@@ -15,16 +15,9 @@
   <h2 class="title">Education</h2>
   <div class="education-item">
     <h2 class="sub-title">
-      Higher School of Computer Science and Technology - Bejaia
+      <%= education['schoolName'] %> - <%= education['location'] %>
     </h2>
-    <p>Nov 2020 - Present</p>
-    <p>AI & Data Science (Master 1)</p>
-  </div>
-  <div class="education-item">
-    <h2 class="sub-title">
-      Higher School of Computer Science and Technology - Bejaia
-    </h2>
-    <p>Nov 2020 - Present</p>
-    <p>AI & Data Science (Master 1)</p>
+    <p><%= education['endMonth'] %> <%= education['endYear'] %> </p>
+    <p><%= education['field'] %> (<%= education['degree'] %>)</p>
   </div>
 </div>

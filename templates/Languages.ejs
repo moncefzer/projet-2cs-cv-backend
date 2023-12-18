@@ -11,10 +11,16 @@
     },
   ], -->
 <div class="languages">
+  <style>
+    
+  </style>
   <h2 class="title">Languages</h2>
-  <ul>
-    <li><span>English</span><span>Advanced(B2~C1)</span></li>
-    <li><span>English</span><span>Advanced(B2~C1)</span></li>
-    <li><span>English</span><span>Advanced(B2~C1)</span></li>
+  <ul class="">
+    <% languages.forEach((item)=>{ %>
+      <li>
+        <%= item.language %>
+        <%= item.level %>
+      </li>
+    <% }); %>
   </ul>
 </div>
