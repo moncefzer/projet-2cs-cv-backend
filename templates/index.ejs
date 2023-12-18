@@ -16,15 +16,15 @@
 
       <div class="container">
         <div class="left-column">
-          <%- include('Skills', { skills: data.skills }) %> <%-
-          include('Languages', { languages: data.languages }) %> <%-
-          include('ContactInfos', { infos: data.infos }) %>
+          <%- include('Skills', { skills: data.skills }) %> 
+          <%- include('Languages', { languages: data.languages }) %> 
+          <%- include('ContactInfos', { infos: data.infos }) %>
         </div>
 
         <div class="right-column">
-          <%- include('ObjectiveStatement', { summary: data.summary }) %> <%-
-          include('Experience', { experiences: data.jobExperience }) %> <%-
-          include('Education', { education: data.education }) %>
+          <%- include('ObjectiveStatement', { summary: data.summary }) %> 
+          <%- include('Experience', { jobExperience: data.jobExperience[0] }) %> 
+          <%- include('Education', { education: data.education[0] }) %>
         </div>
       </div>
     </div>

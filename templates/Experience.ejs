@@ -16,33 +16,25 @@
   ], -->
 
 <div class="experiences">
-  <style></style>
-  <h2 class="title">experiences</h2>
+  <style>
+    .experience ul {
+      margin-left: 20px;
+    }
+    .experience p{
+      margin-bottom: 10px;
+    }
+  </style>
+  <h2 class="title">Experiences</h2>
   <div class="experience">
-    <h2 class="sub-title">Freelance (Digital Products Designer)</h2>
-    <p>Jul 2022 - Present</p>
-    <p>
-      I’ve Been Working On different design solutions, Competitors Analysis,
-      Wireframes, User flows, information Architecture and high-fidelity
-      mockups.
-    </p>
-    <p>My primary responsibilities include:</p>
-    <ul>
+    <h2 class="sub-title"> <%= jobExperience['jobTitle']   %> </h2>
+    <p> <%= jobExperience['companyName'] %> </p>
+    <p> <%= jobExperience['startMonth'] %> <%= jobExperience['startYear'] %> - <%= jobExperience['endMonth'] %> <%= jobExperience['endYear'] %> </p>
+    <p> <%= jobExperience['city'] %> </p>
+    <p> <%= jobExperience['state'] %> </p>
+    <p> My primary responsibilities include: </p>
+    <ul class="decorated-list">
       <li>
-        Regularly interact with clients/stakeholders to Gather requirements,
-        understand project goals and objectives.
-      </li>
-      <li>
-        Regularly interact with clients/stakeholders to Gather requirements,
-        understand project goals and objectives.
-      </li>
-      <li>
-        Regularly interact with clients/stakeholders to Gather requirements,
-        understand project goals and objectives.
-      </li>
-      <li>
-        Regularly interact with clients/stakeholders to Gather requirements,
-        understand project goals and objectives.
+        <%= jobExperience['responsibility'] %>
       </li>
     </ul>
   </div>
