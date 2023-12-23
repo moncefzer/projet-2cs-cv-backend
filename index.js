@@ -10,14 +10,16 @@ const app = express();
 // set cors
 app.use(cors());
 
+app.use(express.static("public"));
+
 // Set EJS as the view engine
 app.set("view engine", "ejs");
 
-app.get("/", async (req, res) => {
+app.get("/api/", async (req, res) => {
   res.json("hello world");
 });
 
-app.get("/cv", async (req, res) => {
+app.get("/api/cv", async (req, res) => {
   console.log("generate cv");
   // Render the EJS template
   const html = await ejs.renderFile(
@@ -26,7 +28,7 @@ app.get("/cv", async (req, res) => {
   );
 
   // Launch Puppeteer browser
-  const browser = await puppeteer.launch({headless: "new"});
+  const browser = await puppeteer.launch({ headless: "new" });
 
   // Create a new page
   const page = await browser.newPage();
@@ -41,53 +43,23 @@ app.get("/cv", async (req, res) => {
   var milis = new Date();
   milis = milis.getTime();
 
-  const fileName = `cv_${data.infos.firstName}_${milis}`
+  const fileName = `cv_${data.infos.firstName}_${milis}`;
 
   // Generate the PDF
-  const filePath = path.join(
-    __dirname,
-    "media",
-    fileName + `.pdf`
-  );
-
-  const pdf = await page.pdf({
-    path: filePath,
+  await page.pdf({
+    path: path.join(__dirname, "public", "media", fileName + `.pdf`),
     format: "A4",
-    height: "400px",
   });
+
   await page.screenshot({
-    path: `images\\`+ fileName + `.png`,
+    path: path.join(__dirname, "public", "images", fileName + `.png`),
     type: "png",
   });
+
   // Set appropriate response headers
   await browser.close();
 
-  // res.setHeader("Content-Type", "application/pdf");
-  // res.setHeader("Content-Disposition", 'inline; filename="cv.pdf"'); // Display inline, not as an attachment
-
-  // // Send the PDF data to the client
-  // res.send(pdf);
-
-  res.sendFile(path.join(__dirname, 'images', `${fileName}.png`));
-
-  // Close Puppeteer browser
+  res.json({ img: fileName + `.png`, pdf: fileName + `.pdf` });
 });
-
-// app.get('/pdf', (req, res) => {
-
-//   const fileName = `cv_Moncef_1702512408813`
-
-//   // Generate the PDF
-//   const filePath = path.join(
-//     __dirname,
-//     "media",
-//     fileName + `.pdf`
-//   );
-
-//   res.setHeader("Content-Type", "application/pdf");
-//   res.setHeader("Content-Disposition", 'inline; filename="cv.pdf"');
-
-//   res.sendFile(filePath)
-// })
 
 app.listen(3001, () => console.log("Server started on port 3001"));
