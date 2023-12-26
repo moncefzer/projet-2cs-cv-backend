@@ -11,16 +11,11 @@
     },
   ], -->
 <div class="languages">
-  <style>
-    
-  </style>
-  <h2 class="title">Languages</h2>
+  <style></style>
+  <%- include('Title', { title: "Languages" ,color:color }) %>
   <ul class="">
     <% languages.forEach((item)=>{ %>
-      <li>
-        <%= item.language %>
-        <%= item.level %>
-      </li>
+    <li><%= item.language %> <%= item.level %></li>
     <% }); %>
   </ul>
 </div>

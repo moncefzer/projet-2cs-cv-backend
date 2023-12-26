@@ -11,13 +11,19 @@
     },
   ], -->
 <div class="education">
-  <style></style>
-  <h2 class="title">Education</h2>
+  <style>
+    .education-item {
+      margin-bottom: 10px;
+    }
+  </style>
+  <%- include('Title', { title: "Education" ,color:color }) %> <%
+  education.forEach((item)=>{%>
   <div class="education-item">
     <h2 class="sub-title">
-      <%= education['schoolName'] %> - <%= education['location'] %>
+      <%= item['schoolName'] %> - <%= item['location'] %>
     </h2>
-    <p><%= education['endMonth'] %> <%= education['endYear'] %> </p>
-    <p><%= education['field'] %> (<%= education['degree'] %>)</p>
+    <p><%= item['endMonth'] %> <%= item['endYear'] %></p>
+    <p><%= item['field'] %> (<%= item['degree'] %>)</p>
   </div>
+  <%});%>
 </div>

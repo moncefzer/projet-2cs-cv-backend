@@ -16,15 +16,18 @@
 
       <div class="container">
         <div class="left-column">
-          <%- include('Skills', { skills: data.skills }) %> 
-          <%- include('Languages', { languages: data.languages }) %> 
-          <%- include('ContactInfos', { infos: data.infos }) %>
+          <%- include('Skills', { skills: data.skills ,color:data.cvColor }) %>
+          <%- include('Languages', { languages: data.languages
+          ,color:data.cvColor }) %> <%- include('ContactInfos', { infos:
+          data.infos ,color:data.cvColor }) %>
         </div>
 
         <div class="right-column">
-          <%- include('ObjectiveStatement', { summary: data.summary }) %> 
-          <%- include('Experience', { jobExperience: data.jobExperience[0] }) %> 
-          <%- include('Education', { education: data.education[0] }) %>
+          <%- include('ObjectiveStatement', { summary: data.summary
+          ,color:data.cvColor }) %> <%- include('Experience', { jobExperience:
+          data.jobExperience[0] ,color:data.cvColor }) %> <%-
+          include('Education', { education: data.education ,color:data.cvColor
+          }) %>
         </div>
       </div>
     </div>
@@ -79,7 +82,7 @@
     .title {
       font-weight: 600;
       font-size: 16px;
-      color: #356eff;
+      /* color: #356eff; */
       margin-bottom: 7px;
     }
 

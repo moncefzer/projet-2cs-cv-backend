@@ -13,7 +13,7 @@
       margin-left: 20px;
     }
   </style>
-  <h2 class="title">Skills</h2>
+  <%- include('Title', { title: "Skills" ,color:color }) %>
   <ul class="decorated-list">
     <% skills.forEach((item)=>{%>
     <li><%=item.skill%></li>

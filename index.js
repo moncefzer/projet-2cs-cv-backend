@@ -10,17 +10,23 @@ const app = express();
 // set cors
 app.use(cors());
 
-app.use(express.static("public"));
+app.use(express.json());
+app.use(express.static("public/images"));
+app.use(express.static("public/media"));
 
 // Set EJS as the view engine
 app.set("view engine", "ejs");
 
-app.get("/api/", async (req, res) => {
-  res.json("hello world");
-});
+// Set views directory
+// app.set("views", path.join(__dirname, "templates"));
 
-app.get("/api/cv", async (req, res) => {
-  console.log("generate cv");
+// app.get("/test", async (req, res) => {
+//   res.render("index", { data });
+// });
+
+app.post("/api/cv", async (req, res) => {
+  const data = JSON.parse(req.body.data);
+  console.log("generate cv", data.cvColor);
   // Render the EJS template
   const html = await ejs.renderFile(
     path.join(__dirname, "templates", "index.ejs"),

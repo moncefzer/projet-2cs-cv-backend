@@ -20,22 +20,23 @@
     .experience ul {
       margin-left: 20px;
     }
-    .experience p{
+    .experience p {
       margin-bottom: 10px;
     }
   </style>
-  <h2 class="title">Experiences</h2>
+  <%- include('Title', { title: "Experiences" ,color:color }) %>
   <div class="experience">
-    <h2 class="sub-title"> <%= jobExperience['jobTitle']   %> </h2>
-    <p> <%= jobExperience['companyName'] %> </p>
-    <p> <%= jobExperience['startMonth'] %> <%= jobExperience['startYear'] %> - <%= jobExperience['endMonth'] %> <%= jobExperience['endYear'] %> </p>
-    <p> <%= jobExperience['city'] %> </p>
-    <p> <%= jobExperience['state'] %> </p>
-    <p> My primary responsibilities include: </p>
+    <h2 class="sub-title"><%= jobExperience['jobTitle'] %></h2>
+    <p><%= jobExperience['companyName'] %></p>
+    <p>
+      <%= jobExperience['startMonth'] %> <%= jobExperience['startYear'] %> - <%=
+      jobExperience['endMonth'] %> <%= jobExperience['endYear'] %>
+    </p>
+    <p><%= jobExperience['city'] %></p>
+    <p><%= jobExperience['state'] %></p>
+    <p>My primary responsibilities include:</p>
     <ul class="decorated-list">
-      <li>
-        <%= jobExperience['responsibility'] %>
-      </li>
+      <li><%= jobExperience['responsibility'] %></li>
     </ul>
   </div>
 </div>

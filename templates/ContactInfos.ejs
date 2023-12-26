@@ -13,13 +13,11 @@
   }, -->
 
 <div class="contact-info">
-  <style>
-
-  </style>
-  <h2 class="title">Contact Infos</h2>
+  <style></style>
+  <%- include('Title', { title: "Contact Infos" ,color:color }) %>
   <ul class="">
     <% for (var key in infos) { %>
-      <li> <%= infos[key] %> </li>
+    <li><%= infos[key] %></li>
     <% } %>
   </ul>
 </div>
