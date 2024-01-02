@@ -2,7 +2,7 @@ const express = require("express");
 const puppeteer = require("puppeteer");
 const ejs = require("ejs");
 const path = require("path");
-const { data } = require("./data/data");
+const { data: testData } = require("./data/data");
 const cors = require("cors");
 
 const app = express();
@@ -17,11 +17,15 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 // Set views directory
-// app.set("views", path.join(__dirname, "templates"));
+app.set("views", path.join(__dirname, "templates"));
 
-// app.get("/test", async (req, res) => {
-//   res.render("index", { data });
-// });
+app.get("/", async (req, res) => {
+  res.send("cv api !!");
+});
+
+app.get("/test", async (req, res) => {
+  res.render("index", { data: testData });
+});
 
 app.post("/api/cv", async (req, res) => {
   const data = JSON.parse(req.body.data);

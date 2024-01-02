@@ -24,10 +24,9 @@
 
         <div class="right-column">
           <%- include('ObjectiveStatement', { summary: data.summary
-          ,color:data.cvColor }) %> <%- include('Experience', { jobExperience:
-          data.jobExperience[0] ,color:data.cvColor }) %> <%-
-          include('Education', { education: data.education ,color:data.cvColor
-          }) %>
+          ,color:data.cvColor }) %> <%- include('Experiences', { jobExperience:
+          data.jobExperience ,color:data.cvColor }) %> <%- include('Education',
+          { education: data.education ,color:data.cvColor }) %>
         </div>
       </div>
     </div>

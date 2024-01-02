@@ -36,6 +36,18 @@ const data = {
       currentlyWorkHere: false,
       responsibility: "Developed and maintained web applications.",
     },
+    {
+      jobTitle: "Software Engineer",
+      companyName: "ABC Tech",
+      startMonth: "January",
+      endMonth: "December",
+      startYear: "2018",
+      endYear: "2021",
+      city: "New York",
+      state: "NY",
+      currentlyWorkHere: false,
+      responsibility: "Developed and maintained web applications.",
+    },
   ],
   languages: [
     {

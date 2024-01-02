@@ -17,6 +17,10 @@
 
 <div class="experiences">
   <style>
+    .experience {
+      margin-bottom: 10px;
+    }
+
     .experience ul {
       margin-left: 20px;
     }
@@ -24,19 +28,21 @@
       margin-bottom: 10px;
     }
   </style>
-  <%- include('Title', { title: "Experiences" ,color:color }) %>
+  <%- include('Title', { title: "Experiences" ,color:color }) %> <%
+  jobExperience.forEach((experience) => { %>
   <div class="experience">
-    <h2 class="sub-title"><%= jobExperience['jobTitle'] %></h2>
-    <p><%= jobExperience['companyName'] %></p>
+    <h2 class="sub-title"><%= experience['jobTitle'] %></h2>
+    <p><%= experience['companyName'] %></p>
     <p>
-      <%= jobExperience['startMonth'] %> <%= jobExperience['startYear'] %> - <%=
-      jobExperience['endMonth'] %> <%= jobExperience['endYear'] %>
+      <%= experience['startMonth'] %> <%= experience['startYear'] %> - <%=
+      experience['endMonth'] %> <%= experience['endYear'] %>
     </p>
-    <p><%= jobExperience['city'] %></p>
-    <p><%= jobExperience['state'] %></p>
+    <p><%= experience['city'] %></p>
+    <p><%= experience['state'] %></p>
     <p>My primary responsibilities include:</p>
     <ul class="decorated-list">
-      <li><%= jobExperience['responsibility'] %></li>
+      <li><%= experience['responsibility'] %></li>
     </ul>
   </div>
+  <% }) %>
 </div>
