@@ -39,7 +39,7 @@ app.post("/api/cv", async (req, res) => {
   const page = await browser.newPage();
 
   // Set the viewport size
-  await page.setViewport({ width: 800, height: 1000 });
+  await page.setViewport({ width: 800, height: 1000, deviceScaleFactor: 4 });
 
   // Set the content of the page
   await page.setContent(html);
@@ -48,23 +48,26 @@ app.post("/api/cv", async (req, res) => {
   var milis = new Date();
   milis = milis.getTime();
 
-  const fileName = `cv_${data.infos.firstName}_${milis}`;
+  const baseName = `cv_${data.infos.firstName}_${milis}`;
+  const imageName = baseName + `.jpeg`;
+  const pdfName = baseName + `.pdf`;
 
   // Generate the PDF
   await page.pdf({
-    path: path.join(__dirname, "public", fileName + `.pdf`),
+    path: path.join(__dirname, "public", pdfName),
     format: "A4",
   });
 
   await page.screenshot({
-    path: path.join(__dirname, "public", fileName + `.png`),
-    type: "png",
+    path: path.join(__dirname, "public", imageName),
+    type: "jpeg",
+    quality: 100,
   });
 
   // Set appropriate response headers
   await browser.close();
 
-  res.json({ img: fileName + `.png`, pdf: fileName + `.pdf` });
+  res.json({ img: imageName, pdf: pdfName });
 });
 
 app.listen(3001, () => console.log("Server started on port 3001"));
