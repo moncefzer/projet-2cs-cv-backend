@@ -11,8 +11,7 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
-app.use(express.static("public/images"));
-app.use(express.static("public/media"));
+app.use(express.static("public"));
 
 // Set EJS as the view engine
 app.set("view engine", "ejs");
@@ -26,7 +25,7 @@ app.set("view engine", "ejs");
 
 app.post("/api/cv", async (req, res) => {
   const data = JSON.parse(req.body.data);
-  console.log("generate cv", data.cvColor);
+  console.log("generate cv", data);
   // Render the EJS template
   const html = await ejs.renderFile(
     path.join(__dirname, "templates", "index.ejs"),
@@ -53,12 +52,12 @@ app.post("/api/cv", async (req, res) => {
 
   // Generate the PDF
   await page.pdf({
-    path: path.join(__dirname, "public", "media", fileName + `.pdf`),
+    path: path.join(__dirname, "public", fileName + `.pdf`),
     format: "A4",
   });
 
   await page.screenshot({
-    path: path.join(__dirname, "public", "images", fileName + `.png`),
+    path: path.join(__dirname, "public", fileName + `.png`),
     type: "png",
   });
 
