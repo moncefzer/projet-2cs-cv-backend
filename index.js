@@ -4,8 +4,29 @@ const ejs = require("ejs");
 const path = require("path");
 const { data: testData } = require("./data/data");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
+let browser;
+
+// Function to initialize the Puppeteer browser if it doesn't exist
+const initializeBrowser = async () => {
+  if (!browser) {
+    browser = await puppeteer.launch({
+      headless: "new",
+      args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
+    });
+  }
+};
 
 // set cors
 app.use(cors());
@@ -36,8 +57,8 @@ app.post("/api/cv", async (req, res) => {
     { data }
   );
 
-  // Launch Puppeteer browser
-  const browser = await puppeteer.launch({ headless: "new" });
+  // Ensure the browser is initialized
+  await initializeBrowser();
 
   // Create a new page
   const page = await browser.newPage();
@@ -65,13 +86,11 @@ app.post("/api/cv", async (req, res) => {
   await page.screenshot({
     path: path.join(__dirname, "public", imageName),
     type: "jpeg",
-    quality: 100,
+    quality: 60,
   });
-
-  // Set appropriate response headers
-  await browser.close();
 
   res.json({ img: imageName, pdf: pdfName });
 });
 
+// Launch Puppeteer browser
 app.listen(3001, () => console.log("Server started on port 3001"));
