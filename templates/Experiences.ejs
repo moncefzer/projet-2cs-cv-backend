@@ -39,19 +39,19 @@
 
   <!-- Loop through each job experience and display relevant details -->
   <% jobExperience.forEach((experience) => { %>
-    <div class="experience">
-      <h2 class="sub-title"><%= experience['jobTitle'] %></h2>
-      <p><%= experience['companyName'] %></p>
-      <p>
-        <%= experience['startMonth'] %> <%= experience['startYear'] %> -
-        <%= experience['endMonth'] %> <%= experience['endYear'] %>
-      </p>
-      <p><%= experience['city'] %></p>
-      <p><%= experience['state'] %></p>
-      <p>My primary responsibilities include:</p>
-      <ul class="decorated-list">
-        <li><%= experience['responsibility'] %></li>
-      </ul>
-    </div>
+  <div class="experience">
+    <h2 class="sub-title"><%= experience['jobTitle'] %></h2>
+    <p><%= experience['companyName'] %></p>
+    <p>
+      <%= experience['startMonth'] %> <%= experience['startYear'] %> - <%=
+      experience['endMonth'] %> <%= experience['endYear'] %>
+    </p>
+    <p><%= experience['city'] %></p>
+    <p><%= experience['state'] %></p>
+    <p>My primary responsibilities include:</p>
+    <ul class="decorated-list">
+      <li><%- experience['responsibility'] %></li>
+    </ul>
+  </div>
   <% }) %>
 </div>

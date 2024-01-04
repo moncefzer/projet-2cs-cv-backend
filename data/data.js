@@ -34,7 +34,7 @@ const data = {
       city: "New York",
       state: "NY",
       currentlyWorkHere: false,
-      responsibility: "Developed and maintained web applications.",
+      responsibility: "<p>Developed and maintained web applications.</p>",
     },
     {
       jobTitle: "Software Engineer",
@@ -46,7 +46,10 @@ const data = {
       city: "New York",
       state: "NY",
       currentlyWorkHere: false,
-      responsibility: "Developed and maintained web applications.",
+      responsibility: `<p>
+          Developed and maintained web applications.
+          Developed and maintained web applications.2
+        </p>`,
     },
   ],
   languages: [
@@ -59,8 +62,9 @@ const data = {
       level: "Intermediate",
     },
   ],
+
   summary:
-    "Hello, i’m Mohamed, a passionate Digital Products (UI/UX) designer with more then 2 years of experience in the domain, my objective is to leverage my creative skills, problem-solving abilities, and help businesses launch or develop their digital products following the best product development practices. As a master student, I am seeking a Contract, remote or hybrid part-time UI/UX designer position.",
+    "<p>Hello, i’m Mohamed, a passionate Digital Products (UI/UX) designer with more then 2 years of experience in the domain, my objective is to leverage my creative skills, problem-solving abilities, and help businesses launch or develop their digital products following the best product development practices. As a master student, I am seeking a Contract, remote or hybrid part-time UI/UX designer position</p>",
   education: [
     {
       schoolName: "Higher School of Computer Science and Technology",
