@@ -1,21 +1,25 @@
 <!-- Experience.ejs -->
-<!-- Render job experience content using dummyCvState.jobExperience -->
-<!-- jobExperience: [
-    {
-      jobTitle: "Software Developer",
-      companyName: "ABC Tech",
-      startMonth: "January",
-      endMonth: "December",
-      startYear: "2018",
-      endYear: "2021",
-      city: "New York",
-      state: "NY",
-      currentlyWorkHere: false,
-      responsibility: "Developed and maintained web applications.",
-    },
-  ], -->
+<!-- This EJS partial renders the job experience content using the provided 'jobExperience' array -->
+<!-- 'jobExperience' array contains a list of job experiences, each represented as an object with various details -->
+<!-- Example 'jobExperience' array:
+    [
+      {
+        jobTitle: "Software Developer",
+        companyName: "ABC Tech",
+        startMonth: "January",
+        endMonth: "December",
+        startYear: "2018",
+        endYear: "2021",
+        city: "New York",
+        state: "NY",
+        currentlyWorkHere: false,
+        responsibility: "Developed and maintained web applications.",
+      },
+    ]
+-->
 
 <div class="experiences">
+  <!-- Internal styling for the experiences section -->
   <style>
     .experience {
       margin-bottom: 10px;
@@ -24,25 +28,30 @@
     .experience ul {
       margin-left: 20px;
     }
+
     .experience p {
       margin-bottom: 10px;
     }
   </style>
-  <%- include('Title', { title: "Experiences" ,color:color }) %> <%
-  jobExperience.forEach((experience) => { %>
-  <div class="experience">
-    <h2 class="sub-title"><%= experience['jobTitle'] %></h2>
-    <p><%= experience['companyName'] %></p>
-    <p>
-      <%= experience['startMonth'] %> <%= experience['startYear'] %> - <%=
-      experience['endMonth'] %> <%= experience['endYear'] %>
-    </p>
-    <p><%= experience['city'] %></p>
-    <p><%= experience['state'] %></p>
-    <p>My primary responsibilities include:</p>
-    <ul class="decorated-list">
-      <li><%= experience['responsibility'] %></li>
-    </ul>
-  </div>
+
+  <!-- Include the 'Title' partial to display the section title with a specified color -->
+  <%- include('Title', { title: "Experiences", color: color }) %>
+
+  <!-- Loop through each job experience and display relevant details -->
+  <% jobExperience.forEach((experience) => { %>
+    <div class="experience">
+      <h2 class="sub-title"><%= experience['jobTitle'] %></h2>
+      <p><%= experience['companyName'] %></p>
+      <p>
+        <%= experience['startMonth'] %> <%= experience['startYear'] %> -
+        <%= experience['endMonth'] %> <%= experience['endYear'] %>
+      </p>
+      <p><%= experience['city'] %></p>
+      <p><%= experience['state'] %></p>
+      <p>My primary responsibilities include:</p>
+      <ul class="decorated-list">
+        <li><%= experience['responsibility'] %></li>
+      </ul>
+    </div>
   <% }) %>
 </div>

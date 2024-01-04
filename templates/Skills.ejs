@@ -1,22 +1,30 @@
 <!-- Skills.ejs -->
-<!-- Render skills content using dummyCvState.skills -->
-<!-- skills: [
-    { skill: "JavaScript" },
-    { skill: "React" },
-    { skill: "HTML" },
-    { skill: "CSS" },
-  ], -->
+<!-- This EJS partial renders the skills content using the provided 'skills' array -->
+<!-- 'skills' array contains a list of skills, each represented as an object with a 'skill' property -->
+<!-- Example 'skills' array: 
+    [
+      { skill: "JavaScript" },
+      { skill: "React" },
+      { skill: "HTML" },
+      { skill: "CSS" },
+    ]
+-->
 
 <div class="skills">
+  <!-- Internal styling for the skills section -->
   <style>
     .skills ul {
       margin-left: 20px;
     }
   </style>
-  <%- include('Title', { title: "Skills" ,color:color }) %>
+
+  <!-- Include the 'Title' partial to display the section title with a specified color -->
+  <%- include('Title', { title: "Skills", color: color }) %>
+
+  <!-- Display the skills as an unordered, decorated list -->
   <ul class="decorated-list">
-    <% skills.forEach((item)=>{%>
-    <li><%=item.skill%></li>
-    <%});%>
+    <% skills.forEach((item) => { %>
+      <li><%= item.skill %></li>
+    <% }); %>
   </ul>
 </div>

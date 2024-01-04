@@ -1,4 +1,7 @@
-<h2 class="title <%= color%>">
+<!-- Dynamic Title Component -->
+<!-- This component renders an HTML title element with a dynamic color class -->
+<h2 class="title <%= color %>">
+  <!-- Internal styling for color classes -->
   <style>
     .red {
       color: red;
@@ -13,5 +16,7 @@
       color: yellow;
     }
   </style>
-  <%= title%>
+
+  <!-- Display the title using the provided 'title' variable -->
+  <%= title %>
 </h2>

@@ -1,29 +1,38 @@
 <!-- Education.ejs -->
-<!-- Render education content using dummyCvState.education -->
-<!-- education: [
-    {
-      schoolName: "Higher School of Computer Science and Technology",
-      location: "Bejaia",
-      degree: "Bachelor of Science",
-      field: "Computer Science",
-      endMonth: "May",
-      endYear: "2018",
-    },
-  ], -->
+<!-- This EJS partial renders the education content using the provided 'education' array -->
+<!-- 'education' array contains a list of educational experiences, each represented as an object with various details -->
+<!-- Example 'education' array:
+    [
+      {
+        schoolName: "Higher School of Computer Science and Technology",
+        location: "Bejaia",
+        degree: "Bachelor of Science",
+        field: "Computer Science",
+        endMonth: "May",
+        endYear: "2018",
+      },
+    ]
+-->
+
 <div class="education">
+  <!-- Internal styling for the education section -->
   <style>
     .education-item {
       margin-bottom: 10px;
     }
   </style>
-  <%- include('Title', { title: "Education" ,color:color }) %> <%
-  education.forEach((item)=>{%>
-  <div class="education-item">
-    <h2 class="sub-title">
-      <%= item['schoolName'] %> - <%= item['location'] %>
-    </h2>
-    <p><%= item['endMonth'] %> <%= item['endYear'] %></p>
-    <p><%= item['field'] %> (<%= item['degree'] %>)</p>
-  </div>
-  <%});%>
+
+  <!-- Include the 'Title' partial to display the section title with a specified color -->
+  <%- include('Title', { title: "Education", color: color }) %>
+
+  <!-- Loop through each education item and display relevant details -->
+  <% education.forEach((item) => { %>
+    <div class="education-item">
+      <h2 class="sub-title">
+        <%= item['schoolName'] %> - <%= item['location'] %>
+      </h2>
+      <p><%= item['endMonth'] %> <%= item['endYear'] %></p>
+      <p><%= item['field'] %> (<%= item['degree'] %>)</p>
+    </div>
+  <% }); %>
 </div>

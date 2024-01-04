@@ -1,8 +1,14 @@
 <!-- ObjectiveStatement.ejs -->
-<!-- Render objective statement content using dummyCvState.summary -->
-<!-- summary:
-    "Hello, i’m Mohamed, a passionate Digital Products (UI/UX) designer with more then 2 years of experience in the domain, my objective is to leverage my creative skills, problem-solving abilities, and help businesses launch or develop their digital products following the best product development practices. As a master student, I am seeking a Contract, remote or hybrid part-time UI/UX designer position.", -->
+<!-- This EJS partial renders the objective statement content using the provided 'summary' string -->
+<!-- 'summary' contains a concise statement about the individual's professional goals and aspirations -->
+<!-- Example 'summary':
+    "Hello, I’m Mohamed, a passionate Digital Products (UI/UX) designer with more than 2 years of experience in the domain. My objective is to leverage my creative skills, problem-solving abilities, and help businesses launch or develop their digital products following the best product development practices. As a master student, I am seeking a contract, remote, or hybrid part-time UI/UX designer position."
+-->
+
 <div class="objective-statement">
-  <%- include('Title', { title: "Objective Statement" ,color:color }) %>
-  <p><%=summary %></p>
+  <!-- Include the 'Title' partial to display the section title with a specified color -->
+  <%- include('Title', { title: "Objective Statement", color: color }) %>
+
+  <!-- Display the objective statement -->
+  <p><%= summary %></p>
 </div>

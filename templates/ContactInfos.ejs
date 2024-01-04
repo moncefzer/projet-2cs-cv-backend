@@ -1,23 +1,30 @@
 <!-- ContactInfos.ejs -->
-<!-- Render contact information content using dummyCvState.infos -->
-<!-- infos: {
-    image: "path-to-profile-image.jpg",
-    firstName: "Moncef",
-    lastName: "Zermache",
-    jobTitle: "Software Engineer",
-    country: "United States",
-    city: "San Francisco",
-    state: "CA",
-    phoneNumber: "+1234567890",
-    email: "john@example.com",
-  }, -->
+<!-- This EJS partial renders the contact information content using the provided 'infos' object -->
+<!-- 'infos' object contains various contact information such as name, job title, address, phone number, and email -->
+<!-- Example 'infos' object: 
+    {
+      firstName: "Moncef",
+      lastName: "Zermache",
+      jobTitle: "Software Engineer",
+      country: "United States",
+      city: "San Francisco",
+      state: "CA",
+      phoneNumber: "+1234567890",
+      email: "john@example.com",
+    }
+-->
 
 <div class="contact-info">
+  <!-- Internal styling for the contact information section -->
   <style></style>
-  <%- include('Title', { title: "Contact Infos" ,color:color }) %>
+
+  <!-- Include the 'Title' partial to display the section title with a specified color -->
+  <%- include('Title', { title: "Contact Infos", color: color }) %>
+
+  <!-- Display the contact information as a list of key-value pairs -->
   <ul class="">
     <% for (var key in infos) { %>
-    <li><%= infos[key] %></li>
+      <li><%= infos[key] %></li>
     <% } %>
   </ul>
 </div>

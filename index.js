@@ -1,3 +1,4 @@
+// Import required modules
 const express = require("express");
 const puppeteer = require("puppeteer");
 const ejs = require("ejs");
@@ -6,8 +7,9 @@ const { data: testData } = require("./data/data");
 const cors = require("cors");
 require("dotenv").config();
 
+// Initialize Express app
 const app = express();
-let browser;
+let browser; // Variable to store the Puppeteer browser instance
 
 // Function to initialize the Puppeteer browser if it doesn't exist
 const initializeBrowser = async () => {
@@ -28,10 +30,13 @@ const initializeBrowser = async () => {
   }
 };
 
-// set cors
+// Enable Cross-Origin Resource Sharing (CORS)
 app.use(cors());
 
+// Middleware for parsing JSON requests
 app.use(express.json());
+
+// Serve static files from the 'public' directory
 app.use(express.static("public"));
 
 // Set EJS as the view engine
@@ -40,17 +45,21 @@ app.set("view engine", "ejs");
 // Set views directory
 app.set("views", path.join(__dirname, "templates"));
 
+// Default route
 app.get("/", async (req, res) => {
   res.send("cv api !!");
 });
 
+// Test route to render EJS template with test data
 app.get("/test", async (req, res) => {
   res.render("index", { data: testData });
 });
 
+// Route to generate CV in PDF and image format
 app.post("/api/cv", async (req, res) => {
-  const data = JSON.parse(req.body.data);
-  console.log("generate cv", data);
+  const data = req.body.data;
+  // console.log("generate cv", data);
+
   // Render the EJS template
   const html = await ejs.renderFile(
     path.join(__dirname, "templates", "index.ejs"),
@@ -69,10 +78,9 @@ app.post("/api/cv", async (req, res) => {
   // Set the content of the page
   await page.setContent(html);
 
-  // generate time
+  // Generate unique names for PDF and image files
   var milis = new Date();
   milis = milis.getTime();
-
   const baseName = `cv_${data.infos.firstName}_${milis}`;
   const imageName = baseName + `.jpeg`;
   const pdfName = baseName + `.pdf`;
@@ -83,14 +91,16 @@ app.post("/api/cv", async (req, res) => {
     format: "A4",
   });
 
+  // Capture a screenshot of the page as an image
   await page.screenshot({
     path: path.join(__dirname, "public", imageName),
     type: "jpeg",
     quality: 60,
   });
 
+  // Respond with JSON containing file names
   res.json({ img: imageName, pdf: pdfName });
 });
 
-// Launch Puppeteer browser
+// Start the Express app
 app.listen(3001, () => console.log("Server started on port 3001"));

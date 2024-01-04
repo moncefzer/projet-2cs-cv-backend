@@ -1,21 +1,30 @@
 <!-- Languages.ejs -->
-<!-- Render languages content using dummyCvState.languages -->
-<!-- languages: [
-    {
-      language: "English",
-      level: "Fluent",
-    },
-    {
-      language: "Spanish",
-      level: "Intermediate",
-    },
-  ], -->
+<!-- This EJS partial renders the languages content using the provided 'languages' array -->
+<!-- 'languages' array contains a list of languages, each represented as an object with 'language' and 'level' properties -->
+<!-- Example 'languages' array: 
+    [
+      {
+        language: "English",
+        level: "Fluent",
+      },
+      {
+        language: "Spanish",
+        level: "Intermediate",
+      },
+    ]
+-->
+
 <div class="languages">
+  <!-- Internal styling for the languages section -->
   <style></style>
-  <%- include('Title', { title: "Languages" ,color:color }) %>
+
+  <!-- Include the 'Title' partial to display the section title with a specified color -->
+  <%- include('Title', { title: "Languages", color: color }) %>
+
+  <!-- Display the languages as a list with language and proficiency level -->
   <ul class="">
-    <% languages.forEach((item)=>{ %>
-    <li><%= item.language %> <%= item.level %></li>
+    <% languages.forEach((item) => { %>
+      <li><%= item.language %> <%= item.level %></li>
     <% }); %>
   </ul>
 </div>

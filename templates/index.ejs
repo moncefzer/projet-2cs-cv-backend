@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Include Open Sans and Sora fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Set the title of the page -->
     <title>CV</title>
   </head>
 
   <body>
+    <!-- Main content of the CV page -->
     <div class="page">
+      <!-- Include the Header component with the user's information -->
       <%- include('Header', { infos: data.infos }) %>
 
+      <!-- Container for left and right columns -->
       <div class="container">
+        <!-- Left column includes Skills, Languages, and ContactInfos components -->
         <div class="left-column">
-          <%- include('Skills', { skills: data.skills ,color:data.cvColor }) %>
-          <%- include('Languages', { languages: data.languages
-          ,color:data.cvColor }) %> <%- include('ContactInfos', { infos:
-          data.infos ,color:data.cvColor }) %>
+          <%- include('Skills', { skills: data.skills, color: data.cvColor }) %>
+          <%- include('Languages', { languages: data.languages, color: data.cvColor }) %>
+          <%- include('ContactInfos', { infos: data.infos, color: data.cvColor }) %>
         </div>
 
+        <!-- Right column includes ObjectiveStatement, Experiences, and Education components -->
         <div class="right-column">
-          <%- include('ObjectiveStatement', { summary: data.summary
-          ,color:data.cvColor }) %> <%- include('Experiences', { jobExperience:
-          data.jobExperience ,color:data.cvColor }) %> <%- include('Education',
-          { education: data.education ,color:data.cvColor }) %>
+          <%- include('ObjectiveStatement', { summary: data.summary, color: data.cvColor }) %>
+          <%- include('Experiences', { jobExperience: data.jobExperience, color: data.cvColor }) %>
+          <%- include('Education', { education: data.education, color: data.cvColor }) %>
         </div>
       </div>
     </div>
   </body>
 
+  <!-- Styling for the CV page -->
   <style>
     * {
       margin: 0;
@@ -40,14 +47,15 @@
     }
 
     body {
+      /* Set the default font family for the body */
       font-family: "Open Sans", sans-serif;
-      font-family: "Sora", sans-serif;
     }
 
     ul {
       list-style: none;
     }
 
+    /* Styling for the main page container */
     .page {
       padding: 40px;
       background-color: white;
@@ -57,6 +65,7 @@
       font-weight: 400;
     }
 
+    /* Styling for the container that holds the left and right columns */
     .container {
       display: flex;
       flex-direction: row;
@@ -64,6 +73,7 @@
       gap: 30px;
     }
 
+    /* Styling for the left column */
     .left-column {
       flex-basis: 30%;
       display: flex;
@@ -71,6 +81,7 @@
       gap: 30px;
     }
 
+    /* Styling for the right column */
     .right-column {
       flex-basis: 65%;
       display: flex;
@@ -78,6 +89,7 @@
       gap: 30px;
     }
 
+    /* Styling for title elements */
     .title {
       font-weight: 600;
       font-size: 16px;
@@ -85,12 +97,14 @@
       margin-bottom: 7px;
     }
 
+    /* Styling for sub-title elements */
     .sub-title {
       font-size: 16px;
       font-weight: 600;
       color: #222222;
     }
 
+    /* Styling for decorated lists */
     .decorated-list {
       list-style: disc;
     }
