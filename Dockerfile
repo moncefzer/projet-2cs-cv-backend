@@ -9,13 +9,13 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /usr/src/app
 
 # Copy package.json to the working directory
-COPY package.json ./
+COPY package*.json ./
 
 # Install a specific version of npm globally
 RUN npm ci
 
 # Clean npm cache to reduce image size
-# RUN npm cache clean --force
+RUN npm cache clean --force
 
 # Copy the entire project files into the container's working directory
 COPY . .
