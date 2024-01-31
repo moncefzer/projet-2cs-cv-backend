@@ -12,10 +12,10 @@ WORKDIR /usr/src/app
 COPY package.json ./
 
 # Install a specific version of npm globally
-RUN npm install -g npm@10.2.5
+RUN npm ci
 
 # Clean npm cache to reduce image size
-RUN npm cache clean --force
+# RUN npm cache clean --force
 
 # Copy the entire project files into the container's working directory
 COPY . .
