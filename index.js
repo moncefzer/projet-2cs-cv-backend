@@ -60,46 +60,54 @@ app.post("/api/cv", async (req, res) => {
   const data = req.body.data;
   // console.log("generate cv", data);
 
-  // Render the EJS template
-  const html = await ejs.renderFile(
-    path.join(__dirname, "templates", "index.ejs"),
-    { data }
-  );
+  try {
+    // Render the EJS template
+    const html = await ejs.renderFile(
+      path.join(__dirname, "templates", "index.ejs"),
+      { data }
+    );
 
-  // Ensure the browser is initialized
-  await initializeBrowser();
+    // Ensure the browser is initialized
+    await initializeBrowser();
 
-  // Create a new page
-  const page = await browser.newPage();
+    // Create a new page
+    const page = await browser.newPage();
 
-  // Set the viewport size
-  await page.setViewport({ width: 800, height: 1000, deviceScaleFactor: 4 });
+    // Set the viewport size
+    await page.setViewport({ width: 800, height: 1000, deviceScaleFactor: 4 });
 
-  // Set the content of the page
-  await page.setContent(html);
+    // Set the content of the page
+    await page.setContent(html);
 
-  // Generate unique names for PDF and image files
-  var milis = new Date();
-  milis = milis.getTime();
-  const baseName = `cv_${data.infos.firstName}_${milis}`;
-  const imageName = baseName + `.jpeg`;
-  const pdfName = baseName + `.pdf`;
+    // Generate unique names for PDF and image files
+    var milis = new Date();
+    milis = milis.getTime();
+    const baseName = `cv_${data.infos.firstName}_${milis}`;
+    const imageName = baseName + `.jpeg`;
+    const pdfName = baseName + `.pdf`;
 
-  // Generate the PDF
-  await page.pdf({
-    path: path.join(__dirname, "public", pdfName),
-    format: "A4",
-  });
+    // Generate the PDF
+    await page.pdf({
+      path: path.join(__dirname, "public", pdfName),
+      format: "A4",
+    });
 
-  // Capture a screenshot of the page as an image
-  await page.screenshot({
-    path: path.join(__dirname, "public", imageName),
-    type: "jpeg",
-    quality: 60,
-  });
+    // Capture a screenshot of the page as an image
+    await page.screenshot({
+      path: path.join(__dirname, "public", imageName),
+      type: "jpeg",
+      quality: 60,
+    });
 
-  // Respond with JSON containing file names
-  res.json({ img: imageName, pdf: pdfName });
+    // Close the browser instance
+    await browser.close();
+
+    // Respond with JSON containing file names
+    res.json({ img: imageName, pdf: pdfName });
+  } catch (error) {
+    console.error("Error generating CV:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 // Start the Express app
