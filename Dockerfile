@@ -21,7 +21,7 @@ RUN npm cache clean --force
 COPY . .
 
 USER node
-sudo usermod -aG sudo $USER
+chown -R $USER:$USER public/
 
 # Set the default command to run the Node.js application (index.js)
 CMD [ "node", "index.js" ]
