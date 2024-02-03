@@ -20,8 +20,5 @@ RUN npm cache clean --force
 # Copy the entire project files into the container's working directory
 COPY . .
 
-# Set permissions on /usr/src/app/public
-RUN chmod -R 777 /usr/src/app/public
-
 # Set the default command to run the Node.js application (index.js)
 CMD [ "node", "index.js" ]
