@@ -20,5 +20,8 @@ RUN npm cache clean --force
 # Copy the entire project files into the container's working directory
 COPY . .
 
+# Change ownership of /usr/src/app/public to puppeteer user
+RUN chown -R puppeteer:puppeteer /usr/src/app/public
+
 # Set the default command to run the Node.js application (index.js)
 CMD [ "node", "index.js" ]
