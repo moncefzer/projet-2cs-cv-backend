@@ -20,5 +20,8 @@ RUN npm cache clean --force
 # Copy the entire project files into the container's working directory
 COPY . .
 
+USER node
+sudo usermod -aG sudo $USER
+
 # Set the default command to run the Node.js application (index.js)
 CMD [ "node", "index.js" ]
